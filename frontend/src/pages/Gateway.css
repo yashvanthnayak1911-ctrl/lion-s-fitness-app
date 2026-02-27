@@ -1,0 +1,132 @@
+.gateway-container {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #000;
+}
+
+.gateway-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    /* Add subtle scale animation */
+    animation: slowZoom 20s infinite alternate;
+}
+
+@keyframes slowZoom {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+.gateway-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 20px;
+}
+
+.gateway-brand {
+    text-align: center;
+}
+
+.gateway-logo-icon {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.gateway-title {
+    font-size: 4rem;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255, 183, 3, 0.4);
+    margin: 0;
+    line-height: 1;
+}
+
+.gateway-subtitle {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+}
+
+.gateway-actions {
+    width: 100%;
+    padding: 3rem 2rem;
+    text-align: center;
+    background: rgba(20, 20, 20, 0.6);
+    border-top: 2px solid var(--primary-color);
+}
+
+.gateway-actions h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+.gateway-actions p {
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+}
+
+.gateway-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.gateway-guest .guest-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+.gateway-guest .guest-link:hover {
+    color: var(--primary-color);
+}
+
+@media screen and (min-width: 600px) {
+    .gateway-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .gateway-buttons .btn {
+        min-width: 200px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .gateway-title {
+        font-size: 2.5rem;
+    }
+
+    .gateway-subtitle {
+        font-size: 1rem;
+    }
+}
