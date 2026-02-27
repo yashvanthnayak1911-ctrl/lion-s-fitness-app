@@ -9,7 +9,21 @@ const subscriptionRoutes = require('./routes/subscriptionRoutes');
 const featureRoutes = require('./routes/featureRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 
-dotenv.config();
+// Global error handlers
+process.on('uncaughtException', (err) => {
+  console.error('UNCAUGHT EXCEPTION CAUGHT:', err);
+  process.exit(1);
+});
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('UNHANDLED REJECTION CAUGHT:', reason);
+  process.exit(1);
+});
+
+try {
+  dotenv.config();
+} catch (err) {
+  console.error('DOTENV CONFIG ERROR:', err);
+}
 
 const app = express();
 
@@ -35,7 +49,7 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/lionfitness
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
-  app.get('*', (req, res) =>
+  app.use((req, res) =>
     res.sendFile(
       path.resolve(__dirname, '../frontend', 'dist', 'index.html')
     )
@@ -49,6 +63,6 @@ if (process.env.NODE_ENV === 'production') {
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server running on port ${PORT}`);
 });
