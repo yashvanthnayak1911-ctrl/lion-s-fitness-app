@@ -45,21 +45,10 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/lionfitness
   .then(() => console.log('MongoDB connected successfully'))
   .catch((err) => console.log('MongoDB connection error:', err));
 
-// Serve Frontend in Production
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/dist')));
-
-  app.use((req, res) =>
-    res.sendFile(
-      path.resolve(__dirname, '../frontend', 'dist', 'index.html')
-    )
-  );
-} else {
-  // Basic Route
-  app.get('/', (req, res) => {
-    res.send('Lion Fitness API is running...');
-  });
-}
+// Basic Route
+app.get('/', (req, res) => {
+  res.send('Lion Fitness API is running...');
+});
 
 const PORT = process.env.PORT || 5000;
 

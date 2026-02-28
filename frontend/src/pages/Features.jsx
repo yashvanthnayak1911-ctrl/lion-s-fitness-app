@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { CheckCircle2 } from 'lucide-react';
+import { API_BASE_URL } from '../config';
 import './Features.css';
 
 const Features = () => {
@@ -10,7 +11,7 @@ const Features = () => {
     useEffect(() => {
         const fetchFeatures = async () => {
             try {
-                const response = await fetch('/api/features');
+                const response = await fetch(`${API_BASE_URL}/api/features`);
                 if (response.ok) {
                     const data = await response.json();
                     setFeaturesList(data);
@@ -56,7 +57,7 @@ const Features = () => {
                                 {feature.image && (
                                     <div className="feature-image-container">
                                         <img
-                                            src={feature.image}
+                                            src={feature.image?.startsWith('/uploads') ? `${API_BASE_URL}${feature.image}` : feature.image}
                                             alt={feature.title}
                                             className="feature-image"
                                             loading="lazy"

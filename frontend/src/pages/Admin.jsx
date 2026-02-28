@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { Users, Activity, CreditCard, ListPlus, Trash2 } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
 import './Admin.css';
 
 const Admin = () => {
@@ -26,8 +27,8 @@ const Admin = () => {
         const fetchData = async () => {
             try {
                 const [usersRes, featuresRes] = await Promise.all([
-                    fetch('/api/auth/users', { headers: { Authorization: `Bearer ${user.token}` } }),
-                    fetch('/api/features')
+                    fetch(`${API_BASE_URL}/api/auth/users`, { headers: { Authorization: `Bearer ${user.token}` } }),
+                    fetch(`${API_BASE_URL}/api/features`)
                 ]);
 
                 if (usersRes.ok) setUsers(await usersRes.json());
@@ -52,7 +53,7 @@ const Admin = () => {
             if (newFeatureImage) {
                 const formData = new FormData();
                 formData.append('image', newFeatureImage);
-                const uploadRes = await fetch('/api/upload', {
+                const uploadRes = await fetch(`${API_BASE_URL}/api/upload`, {
                     method: 'POST',
                     body: formData,
                 });
@@ -66,7 +67,7 @@ const Admin = () => {
                 }
             }
 
-            const response = await fetch('/api/features', {
+            const response = await fetch(`${API_BASE_URL}/api/features`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -96,7 +97,7 @@ const Admin = () => {
         if (!window.confirm('Are you sure you want to delete this feature?')) return;
 
         try {
-            const response = await fetch(`/api/features/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/api/features/${id}`, {
                 method: 'DELETE',
                 headers: { Authorization: `Bearer ${user.token}` }
             });
@@ -115,7 +116,7 @@ const Admin = () => {
         if (!window.confirm('Are you sure you want to delete this user?')) return;
 
         try {
-            const response = await fetch(`/api/auth/users/${id}`, {
+            const response = await fetch(`${API_BASE_URL}/api/auth/users/${id}`, {
                 method: 'DELETE',
                 headers: { Authorization: `Bearer ${user.token}` }
             });

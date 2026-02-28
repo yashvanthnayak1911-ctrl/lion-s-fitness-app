@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { CreditCard, ShieldCheck } from 'lucide-react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../config';
 import './Subscribe.css';
 
 const plans = [
@@ -32,7 +33,7 @@ const Subscribe = () => {
         setLoading(true);
 
         try {
-            const response = await fetch('/api/subscriptions', {
+            const response = await fetch(`${API_BASE_URL}/api/subscriptions`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
