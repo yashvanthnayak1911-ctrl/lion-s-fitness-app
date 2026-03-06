@@ -10,6 +10,7 @@ const Admin = () => {
     const navigate = useNavigate();
     const [users, setUsers] = useState([]);
     const [features, setFeatures] = useState([]);
+    const [transactions, setTransactions] = useState([]);
     const [loading, setLoading] = useState(true);
 
     // New Feature Form State
@@ -26,13 +27,15 @@ const Admin = () => {
 
         const fetchData = async () => {
             try {
-                const [usersRes, featuresRes] = await Promise.all([
+                const [usersRes, featuresRes, transactionsRes] = await Promise.all([
                     fetch(`${API_BASE_URL}/api/auth/users`, { headers: { Authorization: `Bearer ${user.token}` } }),
-                    fetch(`${API_BASE_URL}/api/features`)
+                    fetch(`${API_BASE_URL}/api/features`),
+                    fetch(`${API_BASE_URL}/api/transactions`, { headers: { Authorization: `Bearer ${user.token}` } })
                 ]);
 
                 if (usersRes.ok) setUsers(await usersRes.json());
                 if (featuresRes.ok) setFeatures(await featuresRes.json());
+                if (transactionsRes.ok) setTransactions(await transactionsRes.json());
             } catch (error) {
                 console.error('Error fetching admin data:', error);
             } finally {
@@ -133,6 +136,7 @@ const Admin = () => {
     };
 
     const activeSubscriptions = users.filter(u => u.subscriptionStatus === 'active').length;
+    const totalRevenue = transactions.reduce((acc, curr) => acc + curr.amount, 0);
 
     return (
         <div className="admin-container section container">
@@ -161,6 +165,13 @@ const Admin = () => {
                     <div className="stat-info">
                         <h3>Total Features</h3>
                         <p className="stat-value">{features.length}</p>
+                    </div>
+                </div>
+                <div className="stat-card glass-panel">
+                    <CreditCard size={32} color="var(--primary-color)" />
+                    <div className="stat-info">
+                        <h3>Total Revenue</h3>
+                        <p className="stat-value">${totalRevenue.toFixed(2)}</p>
                     </div>
                 </div>
             </div>
@@ -254,6 +265,38 @@ const Admin = () => {
                             </tbody>
                         </table>
                     )}
+                    <div className="admin-panel glass-panel">
+                        <h3>Recent Transactions</h3>
+                        {loading ? (
+                            <p>Loading transactions...</p>
+                        ) : (
+                            <table className="admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Plan</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {transactions.map((t) => (
+                                        <tr key={t._id}>
+                                            <td>{t.userName}</td>
+                                            <td>{t.planName}</td>
+                                            <td>${t.amount.toFixed(2)}</td>
+                                            <td>{new Date(t.createdAt).toLocaleDateString()}</td>
+                                        </tr>
+                                    ))}
+                                    {transactions.length === 0 && (
+                                        <tr>
+                                            <td colSpan="4">No transactions found.</td>
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </table>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
