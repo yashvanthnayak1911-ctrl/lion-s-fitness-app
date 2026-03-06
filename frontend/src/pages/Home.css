@@ -28,7 +28,7 @@
     position: relative;
     z-index: 2;
     max-width: 600px;
-    padding-top: 15vh;
+    padding-top: 30vh;
     /* Moves the content down */
 }
 
@@ -206,7 +206,7 @@
     }
 
     .hero-content {
-        padding-top: 5vh;
+        padding-top: 15vh;
         /* Less padding on mobile to save space */
     }
 
