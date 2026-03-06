@@ -10,7 +10,7 @@
     min-height: 500px;
     display: flex;
     align-items: center;
-    background-image: url('https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2070&auto=format&fit=crop');
+    background-image: url('/hero-bg.png');
     background-size: cover;
     background-position: center;
 }
@@ -31,11 +31,13 @@
 }
 
 .hero-content h1 {
-    font-size: 5rem;
-    line-height: 1.1;
+    font-size: 3.5rem;
+    line-height: 1.2;
     margin-bottom: 1.5rem;
     color: #fff;
     text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 500;
 }
 
 .hero-content p {
@@ -193,7 +195,8 @@
 
 @media screen and (max-width: 768px) {
     .hero-content h1 {
-        font-size: 3rem;
+        font-size: 2.2rem;
+        letter-spacing: 2px;
     }
 
     .hero-actions {

@@ -22,7 +22,7 @@ function App() {
               <Route path="/" element={<Gateway />} />
               <Route path="/home" element={<Home />} />
               <Route path="/features" element={<Features />} />
-              <Route path="/auth" element={<Auth />} />
+              {/* <Route path="/auth" element={<Auth />} /> */}
               <Route path="/subscribe" element={<Subscribe />} />
               <Route path="/admin" element={<Admin />} />
             </Routes>

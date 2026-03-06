@@ -17,19 +17,10 @@ const Gateway = () => {
 
                 <div className="gateway-actions glass-panel">
                     <h3>Welcome to the Pride</h3>
-                    <p>Your journey to elite fitness begins here. Join our exclusive community or login to continue your progress.</p>
+                    <p>Your journey to elite fitness begins here. Explore our gym and see what we have to offer.</p>
 
                     <div className="gateway-buttons">
-                        <Link to="/auth?mode=login" className="btn btn-primary">
-                            Member Login
-                        </Link>
-                        <Link to="/auth?mode=register" className="btn btn-outline">
-                            Join Now
-                        </Link>
-                    </div>
-
-                    <div className="gateway-guest">
-                        <Link to="/home" className="guest-link">
+                        <Link to="/home" className="btn btn-primary">
                             Explore the Gym <ArrowRight size={18} />
                         </Link>
                     </div>

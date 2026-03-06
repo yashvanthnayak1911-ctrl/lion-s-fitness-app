@@ -186,6 +186,13 @@ const Admin = () => {
                             onChange={(e) => setNewFeatureDesc(e.target.value)}
                             required
                         ></textarea>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            className="feature-input"
+                            onChange={(e) => setNewFeatureImage(e.target.files[0])}
+                            style={{ padding: '10px', background: 'rgba(255,255,255,0.05)', color: 'white', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '4px' }}
+                        />
                         <button type="submit" className="btn btn-primary" disabled={addingFeature} style={{ width: '100%', padding: '10px' }}>
                             {addingFeature ? 'Adding...' : '+ Add Feature'}
                         </button>

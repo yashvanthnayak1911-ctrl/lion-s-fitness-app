@@ -53,7 +53,7 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-                            <Link to="/auth" className="nav-link" onClick={toggleMenu}>Login</Link>
+                            {/* <Link to="/auth" className="nav-link" onClick={toggleMenu}>Login</Link> */}
                             <Link to="/admin" className="nav-link action-link" style={{ opacity: 0.5 }} onClick={toggleMenu}>
                                 <UserIcon size={18} /> Admin
                             </Link>

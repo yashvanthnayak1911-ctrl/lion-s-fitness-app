@@ -20,8 +20,7 @@ const Subscribe = () => {
 
     const handleSelectPlan = (plan) => {
         if (!user) {
-            alert("Please login or register to choose a membership plan.");
-            navigate('/auth?mode=login');
+            alert("Registration is currently disabled. Please check back later.");
             return;
         }
         setSelectedPlan(plan);

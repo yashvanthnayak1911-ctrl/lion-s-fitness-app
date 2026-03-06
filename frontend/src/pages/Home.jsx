@@ -9,8 +9,8 @@ const Home = () => {
             <section className="hero-section">
                 <div className="hero-overlay"></div>
                 <div className="container hero-content animate-fade-in">
-                    <h1>Forged In Iron</h1>
-                    <p>State-of-the-art equipment, elite trainers, and a community that pushes you past your limits.</p>
+                    <h1>Unleash Your True Potential</h1>
+                    <p>Transform your body, mind, and soul with our elite coaches, world-class equipment, and a community built on strength and perseverance.</p>
                     <div className="hero-actions">
                         <Link to="/subscribe" className="btn btn-primary">Start Free Trial</Link>
                         <Link to="/features" className="btn btn-outline">Explore Features</Link>
