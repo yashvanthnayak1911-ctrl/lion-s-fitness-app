@@ -28,6 +28,8 @@
     position: relative;
     z-index: 2;
     max-width: 600px;
+    padding-top: 15vh;
+    /* Moves the content down */
 }
 
 .hero-content h1 {
@@ -201,6 +203,11 @@
 
     .hero-actions {
         flex-direction: column;
+    }
+
+    .hero-content {
+        padding-top: 5vh;
+        /* Less padding on mobile to save space */
     }
 
     .testimonials-grid {
