@@ -78,7 +78,7 @@
 
 .social-icons a:hover {
     background: var(--primary-color);
-    color: #000;
+    color: #0a0a0a;
     transform: translateY(-3px);
     box-shadow: var(--shadow-glow);
 }
